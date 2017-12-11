@@ -1,0 +1,115 @@
+
+relationship OneToOne {
+//Enrollment to Policy
+//Policy to Policy_Commission,
+
+Agent_Commission_Rule to Policy,
+Carrier_Commission_Rule to Policy
+/*Agent_Advanced_payments to Agent_Enrollment_Commission * /
+}
+
+relationship OneToMany {
+    Agent to Policy
+    Policy to Agent_Advance
+    Policy {commision} to Policy_Commission,
+	Policy_Commission{agent} to Agent_Policy_Commission
+    Agent to Agent_Advance
+    Agent to Agent_Payout
+    Payment_type to Agent_Payout
+    
+}
+
+entity Agent_Payout
+{
+payoutId String required,
+agentId String required,
+paymentTypeId String required,
+paymentDate Date ,
+paymentAmount Number required,
+policyId String ,
+agentEnrollmentCommisionId String
+}
+entity Policy {
+	id String required,
+    agentId String ,
+    isAdvancable Boolean ,
+    commissionRuleId String,
+    agentCommisionRuleId String,
+}
+
+entity Agent_Commission_Rule
+{
+Id String required,
+agentCommisionRule Json required,
+agentId String required
+}
+
+entity Carrier_Commission_Rule
+{
+Id String required,
+carrierId String required,
+carrierCommisionRule Json required,
+advanceRule Json required,
+
+}
+
+
+
+entity Policy_Commission {
+	id String required,
+    commissionAmount Number,
+    statementDate Date required,
+}
+
+entity Agent_Policy_Commission {
+	id String required ,
+    statementDate Date required,
+    totalCommissionAmount Number,
+    policyId String required,
+    isAdvanced Boolean,
+    advanceAdjustedAmount Number,
+    netPolicyCommissionAmount Number
+}
+
+
+entity Agent {
+agentId String required
+agentNPN String required,
+eligibleForAdvances Boolean required,
+}
+entity Agent_Advance
+{
+id String required,
+agentId Number required,
+advanceAmount Number required,
+advance_status String required
+advanceDate Date required,
+advanceContract Json required,
+advanceBalance Number required,
+isDefaulted Boolean ,
+policyId String required,
+payoutId String required
+}
+
+entity Payment_type
+{
+id String required,
+type String required
+}
+
+
+
+
+//entity Policy_Commission
+//{
+//Id String required,
+//policyId String required,
+//policyCommissionRuleId String required,
+//policyCommissionStatus String ,
+//agentId String, 
+//commisionContractId String ,
+//policyCommisionFrequency String required, /* MONTHLY, QUARTERLY,ANNUALLY ?? */
+//expectedPolicyCommision Number ,
+//expectedAgentCommision Number ,
+//
+//}
