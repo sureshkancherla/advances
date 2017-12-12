@@ -1,0 +1,107 @@
+
+relationship OneToOne {
+Agent{id} to Rule_Payment_Agent{agent},
+Carrier{id} to Rule_Payment_Carrier{carrier},
+Enrollment{id} to Enrollment_Payment_MetaData{enrollment},
+Rule_Payment_Agent{id} to Enrollment_Payment_MetaData{agentCommissionRule},
+Rule_Payment_Carrier{id} to Enrollment_Payment_MetaData{carrierCommissionRule},
+Lookup{id} to Agent_Payout{paymentType}
+}
+
+relationship OneToMany {
+    
+    Agent{id} to Enrollment{agent},
+    Enrollment{id}  to Enrollment_Commission{enrollmet},
+	Agent{id} to Agent_Payout{agent},
+    Tenant{id} to Agent{tenant},
+    Tenant{id} to Tenant{parentTenant},
+    Tenant{id} to Enrollment{tenant}
+    
+}
+
+entity Lookup
+{
+id String required,
+type String required,
+value String required
+}
+
+entity Tenant
+{
+id String required,
+type String required,
+parentCode String required,
+tenantId String required
+}
+
+entity Carrier
+{
+id String required,
+name String required,
+hiosId String required
+}
+
+entity Agent_Payout
+{
+payoutId String required,
+agentId String required,
+paymentTypeId String required,
+paymentDate ZonedDateTime ,
+paymentAmount BigDecimal required,
+policyId String ,
+agentEnrollmentCommisionId String
+}
+entity Enrollment
+{
+id String required,
+agentId String required
+}
+entity Enrollment_Payment_MetaData {
+	id String required,
+    enrollmentId String required
+    agentId String ,
+    isAdvancable Boolean ,
+    carrierCommissionRuleId String,
+    agentCommisionRuleId String
+}
+
+entity Rule_Payment_Agent 
+{
+Id String required,
+agentCommisionRule TextBlob required,
+agentId String required
+}
+
+entity Rule_Payment_Carrier
+{
+Id String required,
+carrierId String required,
+carrierCommisionRule TextBlob required,
+advanceRule TextBlob required
+}
+
+entity Enrollment_Commission {
+	id String required,
+    commissionAmount BigDecimal,
+    enrollmetId String required,
+    statementDate ZonedDateTime required
+}
+
+entity Agent {
+agentId String required
+agentNPN String required,
+eligibleForAdvances Boolean required,
+tenantId String required
+
+}
+
+entity Agent_Payout
+{
+id String required,
+agentId String required,
+paymentTypeId String required,
+paymentAmount BigDecimal required,
+enrollmentId String required,
+payoutRule TextBlob required
+}
+
