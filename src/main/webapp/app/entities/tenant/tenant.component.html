@@ -1,0 +1,68 @@
+<div>
+    <h2>
+        <span>Tenants</span>
+        <button class="btn btn-primary float-right jh-create-entity create-tenant" [routerLink]="['/', { outlets: { popup: ['tenant-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Tenant
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="tenants">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Type</span></th>
+            <th><span>Parent Code</span></th>
+            <th><span>Tenant Id</span></th>
+            <th><span>Parent Tenant</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let tenant of tenants ;trackBy: trackId">
+                <td><a [routerLink]="['../tenant', tenant.id ]">{{tenant.id}}</a></td>
+                <td>{{tenant.type}}</td>
+                <td>{{tenant.parentCode}}</td>
+                <td>{{tenant.tenantId}}</td>
+                <td>
+                    <div *ngIf="tenant.parentTenant">
+                        <a [routerLink]="['../tenant', tenant.parentTenant?.id ]" >{{tenant.parentTenant?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../tenant', tenant.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'tenant/'+ tenant.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'tenant/'+ tenant.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

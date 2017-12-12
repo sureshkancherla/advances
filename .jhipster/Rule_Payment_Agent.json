@@ -1,0 +1,43 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "id",
+            "otherEntityName": "enrollmentPaymentMetaData",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "agentCommissionRule"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "agent",
+            "otherEntityName": "agent",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "agentCommisionRule",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "agentId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20171212193928",
+    "entityTableName": "rule_payment_agent",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

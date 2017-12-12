@@ -1,0 +1,65 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myEnrollment_CommissionLabel">Create or edit a Enrollment Commission</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!enrollment_Commission.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="enrollment_Commission.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_commissionAmount">Commission Amount</label>
+            <input type="number" class="form-control" name="commissionAmount" id="field_commissionAmount"
+                [(ngModel)]="enrollment_Commission.commissionAmount" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_enrollmetId">Enrollmet Id</label>
+            <input type="text" class="form-control" name="enrollmetId" id="field_enrollmetId"
+                [(ngModel)]="enrollment_Commission.enrollmetId" required/>
+            <div [hidden]="!(editForm.controls.enrollmetId?.dirty && editForm.controls.enrollmetId?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.enrollmetId?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_statementDate">Statement Date</label>
+            <div class="d-flex">
+                <input id="field_statementDate" type="datetime-local" class="form-control" name="statementDate" [(ngModel)]="enrollment_Commission.statementDate"
+                required/>
+            </div>
+            <div [hidden]="!(editForm.controls.statementDate?.dirty && editForm.controls.statementDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.statementDate?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.statementDate?.errors?.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_enrollmet">Enrollmet</label>
+            <select class="form-control" id="field_enrollmet" name="enrollmet" [(ngModel)]="enrollment_Commission.enrollmet" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="enrollmentOption.id === enrollment_Commission.enrollmet?.id ? enrollment_Commission.enrollmet : enrollmentOption" *ngFor="let enrollmentOption of enrollments; trackBy: trackEnrollmentById">{{enrollmentOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

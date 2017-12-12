@@ -1,0 +1,76 @@
+<div>
+    <h2>
+        <span>Enrollments</span>
+        <button class="btn btn-primary float-right jh-create-entity create-enrollment" [routerLink]="['/', { outlets: { popup: ['enrollment-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Enrollment
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="enrollments">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Agent Id</span></th>
+            <th><span>Id</span></th>
+            <th><span>Agent</span></th>
+            <th><span>Tenant</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let enrollment of enrollments ;trackBy: trackId">
+                <td><a [routerLink]="['../enrollment', enrollment.id ]">{{enrollment.id}}</a></td>
+                <td>{{enrollment.agentId}}</td>
+                <td>
+                    <div *ngIf="enrollment.id">
+                        <a [routerLink]="['../enrollment-payment-meta-data', enrollment.id?.id ]" >{{enrollment.id?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="enrollment.agent">
+                        <a [routerLink]="['../agent', enrollment.agent?.id ]" >{{enrollment.agent?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="enrollment.tenant">
+                        <a [routerLink]="['../tenant', enrollment.tenant?.id ]" >{{enrollment.tenant?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../enrollment', enrollment.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'enrollment/'+ enrollment.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'enrollment/'+ enrollment.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

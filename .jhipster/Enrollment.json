@@ -1,0 +1,46 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "id",
+            "otherEntityName": "enrollmentPaymentMetaData",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "enrollment"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "id",
+            "otherEntityName": "enrollmentCommission",
+            "otherEntityRelationshipName": "enrollmet"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "agent",
+            "otherEntityName": "agent",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "tenant",
+            "otherEntityName": "tenant",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "agentId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20171212193926",
+    "entityTableName": "enrollment",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

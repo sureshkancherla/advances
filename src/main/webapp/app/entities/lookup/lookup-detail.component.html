@@ -1,0 +1,36 @@
+
+<div *ngIf="lookup">
+    <h2><span>Lookup</span> {{lookup.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Type</span></dt>
+        <dd>
+            <span>{{lookup.type}}</span>
+        </dd>
+        <dt><span>Value</span></dt>
+        <dd>
+            <span>{{lookup.value}}</span>
+        </dd>
+        <dt><span>Id</span></dt>
+        <dd>
+            <div *ngIf="lookup.id">
+                <a [routerLink]="['/agent-payout', lookup.id?.id]">{{lookup.id?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'lookup/'+ lookup.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

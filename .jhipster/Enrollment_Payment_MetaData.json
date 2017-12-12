@@ -1,0 +1,57 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "enrollment",
+            "otherEntityName": "enrollment",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "agentCommissionRule",
+            "otherEntityName": "rulePaymentAgent",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "carrierCommissionRule",
+            "otherEntityName": "rulePaymentCarrier",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "enrollmentId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "agentId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "isAdvancable",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "carrierCommissionRuleId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "agentCommisionRuleId",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171212193927",
+    "entityTableName": "enrollment_payment_meta_data",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

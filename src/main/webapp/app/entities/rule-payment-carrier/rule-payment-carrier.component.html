@@ -1,0 +1,68 @@
+<div>
+    <h2>
+        <span>Rule Payment Carriers</span>
+        <button class="btn btn-primary float-right jh-create-entity create-rule-payment-carrier" [routerLink]="['/', { outlets: { popup: ['rule-payment-carrier-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Rule Payment Carrier
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="rule_Payment_Carriers">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Carrier Id</span></th>
+            <th><span>Carrier Commision Rule</span></th>
+            <th><span>Advance Rule</span></th>
+            <th><span>Id</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let rule_Payment_Carrier of rule_Payment_Carriers ;trackBy: trackId">
+                <td><a [routerLink]="['../rule-payment-carrier', rule_Payment_Carrier.id ]">{{rule_Payment_Carrier.id}}</a></td>
+                <td>{{rule_Payment_Carrier.carrierId}}</td>
+                <td>{{rule_Payment_Carrier.carrierCommisionRule}}</td>
+                <td>{{rule_Payment_Carrier.advanceRule}}</td>
+                <td>
+                    <div *ngIf="rule_Payment_Carrier.id">
+                        <a [routerLink]="['../enrollment-payment-meta-data', rule_Payment_Carrier.id?.id ]" >{{rule_Payment_Carrier.id?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../rule-payment-carrier', rule_Payment_Carrier.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'rule-payment-carrier/'+ rule_Payment_Carrier.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'rule-payment-carrier/'+ rule_Payment_Carrier.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

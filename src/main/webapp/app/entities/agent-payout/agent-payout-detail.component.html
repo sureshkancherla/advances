@@ -1,0 +1,48 @@
+
+<div *ngIf="agent_Payout">
+    <h2><span>Agent Payout</span> {{agent_Payout.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Agent Id</span></dt>
+        <dd>
+            <span>{{agent_Payout.agentId}}</span>
+        </dd>
+        <dt><span>Payment Type Id</span></dt>
+        <dd>
+            <span>{{agent_Payout.paymentTypeId}}</span>
+        </dd>
+        <dt><span>Payment Amount</span></dt>
+        <dd>
+            <span>{{agent_Payout.paymentAmount}}</span>
+        </dd>
+        <dt><span>Enrollment Id</span></dt>
+        <dd>
+            <span>{{agent_Payout.enrollmentId}}</span>
+        </dd>
+        <dt><span>Payout Rule</span></dt>
+        <dd>
+            <span>{{agent_Payout.payoutRule}}</span>
+        </dd>
+        <dt><span>Agent</span></dt>
+        <dd>
+            <div *ngIf="agent_Payout.agent">
+                <a [routerLink]="['/agent', agent_Payout.agent?.id]">{{agent_Payout.agent?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'agent-payout/'+ agent_Payout.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

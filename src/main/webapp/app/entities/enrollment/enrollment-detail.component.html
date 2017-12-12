@@ -1,0 +1,44 @@
+
+<div *ngIf="enrollment">
+    <h2><span>Enrollment</span> {{enrollment.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Agent Id</span></dt>
+        <dd>
+            <span>{{enrollment.agentId}}</span>
+        </dd>
+        <dt><span>Id</span></dt>
+        <dd>
+            <div *ngIf="enrollment.id">
+                <a [routerLink]="['/enrollment-payment-meta-data', enrollment.id?.id]">{{enrollment.id?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Agent</span></dt>
+        <dd>
+            <div *ngIf="enrollment.agent">
+                <a [routerLink]="['/agent', enrollment.agent?.id]">{{enrollment.agent?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Tenant</span></dt>
+        <dd>
+            <div *ngIf="enrollment.tenant">
+                <a [routerLink]="['/tenant', enrollment.tenant?.id]">{{enrollment.tenant?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'enrollment/'+ enrollment.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

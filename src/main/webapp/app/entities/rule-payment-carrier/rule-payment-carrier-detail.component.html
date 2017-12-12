@@ -1,0 +1,40 @@
+
+<div *ngIf="rule_Payment_Carrier">
+    <h2><span>Rule Payment Carrier</span> {{rule_Payment_Carrier.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Carrier Id</span></dt>
+        <dd>
+            <span>{{rule_Payment_Carrier.carrierId}}</span>
+        </dd>
+        <dt><span>Carrier Commision Rule</span></dt>
+        <dd>
+            <span>{{rule_Payment_Carrier.carrierCommisionRule}}</span>
+        </dd>
+        <dt><span>Advance Rule</span></dt>
+        <dd>
+            <span>{{rule_Payment_Carrier.advanceRule}}</span>
+        </dd>
+        <dt><span>Id</span></dt>
+        <dd>
+            <div *ngIf="rule_Payment_Carrier.id">
+                <a [routerLink]="['/enrollment-payment-meta-data', rule_Payment_Carrier.id?.id]">{{rule_Payment_Carrier.id?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'rule-payment-carrier/'+ rule_Payment_Carrier.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

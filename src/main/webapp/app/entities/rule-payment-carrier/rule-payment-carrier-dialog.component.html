@@ -1,0 +1,65 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myRule_Payment_CarrierLabel">Create or edit a Rule Payment Carrier</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!rule_Payment_Carrier.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="rule_Payment_Carrier.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_carrierId">Carrier Id</label>
+            <input type="text" class="form-control" name="carrierId" id="field_carrierId"
+                [(ngModel)]="rule_Payment_Carrier.carrierId" required/>
+            <div [hidden]="!(editForm.controls.carrierId?.dirty && editForm.controls.carrierId?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.carrierId?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_carrierCommisionRule">Carrier Commision Rule</label>
+            <textarea class="form-control" name="carrierCommisionRule" id="field_carrierCommisionRule"
+                [(ngModel)]="rule_Payment_Carrier.carrierCommisionRule" required></textarea>
+            <div [hidden]="!(editForm.controls.carrierCommisionRule?.dirty && editForm.controls.carrierCommisionRule?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.carrierCommisionRule?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_advanceRule">Advance Rule</label>
+            <textarea class="form-control" name="advanceRule" id="field_advanceRule"
+                [(ngModel)]="rule_Payment_Carrier.advanceRule" required></textarea>
+            <div [hidden]="!(editForm.controls.advanceRule?.dirty && editForm.controls.advanceRule?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.advanceRule?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_id">Id</label>
+            <select class="form-control" id="field_id" name="id" [(ngModel)]="rule_Payment_Carrier.id">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="enrollmentPaymentMetaDataOption.id === rule_Payment_Carrier.id?.id ? rule_Payment_Carrier.id : enrollmentPaymentMetaDataOption" *ngFor="let enrollmentPaymentMetaDataOption of ids; trackBy: trackEnrollmentPaymentMetaDataById">{{enrollmentPaymentMetaDataOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>
