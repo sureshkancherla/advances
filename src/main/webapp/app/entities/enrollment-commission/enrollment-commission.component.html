@@ -1,0 +1,68 @@
+<div>
+    <h2>
+        <span>Enrollment Commissions</span>
+        <button class="btn btn-primary float-right jh-create-entity create-enrollment-commission" [routerLink]="['/', { outlets: { popup: ['enrollment-commission-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Enrollment Commission
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="enrollment_Commissions">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Commission Amount</span></th>
+            <th><span>Enrollmet Id</span></th>
+            <th><span>Statement Date</span></th>
+            <th><span>Enrollmet</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let enrollment_Commission of enrollment_Commissions ;trackBy: trackId">
+                <td><a [routerLink]="['../enrollment-commission', enrollment_Commission.id ]">{{enrollment_Commission.id}}</a></td>
+                <td>{{enrollment_Commission.commissionAmount}}</td>
+                <td>{{enrollment_Commission.enrollmetId}}</td>
+                <td>{{enrollment_Commission.statementDate | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="enrollment_Commission.enrollmet">
+                        <a [routerLink]="['../enrollment', enrollment_Commission.enrollmet?.id ]" >{{enrollment_Commission.enrollmet?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../enrollment-commission', enrollment_Commission.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'enrollment-commission/'+ enrollment_Commission.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'enrollment-commission/'+ enrollment_Commission.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

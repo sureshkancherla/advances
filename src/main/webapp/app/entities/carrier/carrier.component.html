@@ -1,0 +1,66 @@
+<div>
+    <h2>
+        <span>Carriers</span>
+        <button class="btn btn-primary float-right jh-create-entity create-carrier" [routerLink]="['/', { outlets: { popup: ['carrier-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Carrier
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="carriers">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Name</span></th>
+            <th><span>Hios Id</span></th>
+            <th><span>Id</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let carrier of carriers ;trackBy: trackId">
+                <td><a [routerLink]="['../carrier', carrier.id ]">{{carrier.id}}</a></td>
+                <td>{{carrier.name}}</td>
+                <td>{{carrier.hiosId}}</td>
+                <td>
+                    <div *ngIf="carrier.id">
+                        <a [routerLink]="['../rule-payment-carrier', carrier.id?.id ]" >{{carrier.id?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../carrier', carrier.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'carrier/'+ carrier.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'carrier/'+ carrier.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

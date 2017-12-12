@@ -1,0 +1,40 @@
+
+<div *ngIf="tenant">
+    <h2><span>Tenant</span> {{tenant.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Type</span></dt>
+        <dd>
+            <span>{{tenant.type}}</span>
+        </dd>
+        <dt><span>Parent Code</span></dt>
+        <dd>
+            <span>{{tenant.parentCode}}</span>
+        </dd>
+        <dt><span>Tenant Id</span></dt>
+        <dd>
+            <span>{{tenant.tenantId}}</span>
+        </dd>
+        <dt><span>Parent Tenant</span></dt>
+        <dd>
+            <div *ngIf="tenant.parentTenant">
+                <a [routerLink]="['/tenant', tenant.parentTenant?.id]">{{tenant.parentTenant?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'tenant/'+ tenant.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

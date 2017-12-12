@@ -1,0 +1,66 @@
+<div>
+    <h2>
+        <span>Rule Payment Agents</span>
+        <button class="btn btn-primary float-right jh-create-entity create-rule-payment-agent" [routerLink]="['/', { outlets: { popup: ['rule-payment-agent-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Rule Payment Agent
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="rule_Payment_Agents">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Agent Commision Rule</span></th>
+            <th><span>Agent Id</span></th>
+            <th><span>Id</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let rule_Payment_Agent of rule_Payment_Agents ;trackBy: trackId">
+                <td><a [routerLink]="['../rule-payment-agent', rule_Payment_Agent.id ]">{{rule_Payment_Agent.id}}</a></td>
+                <td>{{rule_Payment_Agent.agentCommisionRule}}</td>
+                <td>{{rule_Payment_Agent.agentId}}</td>
+                <td>
+                    <div *ngIf="rule_Payment_Agent.id">
+                        <a [routerLink]="['../enrollment-payment-meta-data', rule_Payment_Agent.id?.id ]" >{{rule_Payment_Agent.id?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../rule-payment-agent', rule_Payment_Agent.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'rule-payment-agent/'+ rule_Payment_Agent.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'rule-payment-agent/'+ rule_Payment_Agent.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

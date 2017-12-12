@@ -1,0 +1,40 @@
+
+<div *ngIf="enrollment_Commission">
+    <h2><span>Enrollment Commission</span> {{enrollment_Commission.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Commission Amount</span></dt>
+        <dd>
+            <span>{{enrollment_Commission.commissionAmount}}</span>
+        </dd>
+        <dt><span>Enrollmet Id</span></dt>
+        <dd>
+            <span>{{enrollment_Commission.enrollmetId}}</span>
+        </dd>
+        <dt><span>Statement Date</span></dt>
+        <dd>
+            <span>{{enrollment_Commission.statementDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>Enrollmet</span></dt>
+        <dd>
+            <div *ngIf="enrollment_Commission.enrollmet">
+                <a [routerLink]="['/enrollment', enrollment_Commission.enrollmet?.id]">{{enrollment_Commission.enrollmet?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'enrollment-commission/'+ enrollment_Commission.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

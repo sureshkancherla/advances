@@ -1,0 +1,42 @@
+
+<div *ngIf="enrollment_Payment_MetaData">
+    <h2><span>Enrollment Payment Meta Data</span> {{enrollment_Payment_MetaData.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Enrollment Id</span></dt>
+        <dd>
+            <span>{{enrollment_Payment_MetaData.enrollmentId}}</span>
+        </dd>
+        <dt><span>Agent Id</span></dt>
+        <dd>
+            <span>{{enrollment_Payment_MetaData.agentId}}</span>
+        </dd>
+        <dt><span>Is Advancable</span></dt>
+        <dd>
+            <span>{{enrollment_Payment_MetaData.isAdvancable}}</span>
+        </dd>
+        <dt><span>Carrier Commission Rule Id</span></dt>
+        <dd>
+            <span>{{enrollment_Payment_MetaData.carrierCommissionRuleId}}</span>
+        </dd>
+        <dt><span>Agent Commision Rule Id</span></dt>
+        <dd>
+            <span>{{enrollment_Payment_MetaData.agentCommisionRuleId}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'enrollment-payment-meta-data/'+ enrollment_Payment_MetaData.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

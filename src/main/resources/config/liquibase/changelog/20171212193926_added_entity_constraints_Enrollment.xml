@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Enrollment.
+    -->
+    <changeSet id="20171212193926-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="id_id"
+                                 baseTableName="enrollment"
+                                 constraintName="fk_enrollment_id_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="enrollment_payment_meta_data"/>
+
+        <addForeignKeyConstraint baseColumnNames="agent_id"
+                                 baseTableName="enrollment"
+                                 constraintName="fk_enrollment_agent_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="agent"/>
+
+        <addForeignKeyConstraint baseColumnNames="tenant_id"
+                                 baseTableName="enrollment"
+                                 constraintName="fk_enrollment_tenant_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tenant"/>
+
+    </changeSet>
+</databaseChangeLog>

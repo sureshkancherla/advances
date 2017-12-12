@@ -1,0 +1,66 @@
+<div>
+    <h2>
+        <span>Lookups</span>
+        <button class="btn btn-primary float-right jh-create-entity create-lookup" [routerLink]="['/', { outlets: { popup: ['lookup-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Lookup
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="lookups">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Type</span></th>
+            <th><span>Value</span></th>
+            <th><span>Id</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let lookup of lookups ;trackBy: trackId">
+                <td><a [routerLink]="['../lookup', lookup.id ]">{{lookup.id}}</a></td>
+                <td>{{lookup.type}}</td>
+                <td>{{lookup.value}}</td>
+                <td>
+                    <div *ngIf="lookup.id">
+                        <a [routerLink]="['../agent-payout', lookup.id?.id ]" >{{lookup.id?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../lookup', lookup.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'lookup/'+ lookup.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'lookup/'+ lookup.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

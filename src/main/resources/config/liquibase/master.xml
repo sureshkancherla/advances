@@ -5,6 +5,25 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171212193922_added_entity_Lookup.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171212193923_added_entity_Tenant.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171212193924_added_entity_Carrier.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171212193925_added_entity_Agent_Payout.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171212193926_added_entity_Enrollment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171212193927_added_entity_Enrollment_Payment_MetaData.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171212193928_added_entity_Rule_Payment_Agent.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171212193929_added_entity_Rule_Payment_Carrier.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171212193930_added_entity_Enrollment_Commission.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171212193931_added_entity_Agent.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20171212193922_added_entity_constraints_Lookup.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171212193923_added_entity_constraints_Tenant.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171212193924_added_entity_constraints_Carrier.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171212193925_added_entity_constraints_Agent_Payout.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171212193926_added_entity_constraints_Enrollment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171212193928_added_entity_constraints_Rule_Payment_Agent.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171212193929_added_entity_constraints_Rule_Payment_Carrier.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171212193930_added_entity_constraints_Enrollment_Commission.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171212193931_added_entity_constraints_Agent.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

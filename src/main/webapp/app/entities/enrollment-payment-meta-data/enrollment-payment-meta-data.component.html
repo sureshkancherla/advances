@@ -1,0 +1,66 @@
+<div>
+    <h2>
+        <span>Enrollment Payment Meta Data</span>
+        <button class="btn btn-primary float-right jh-create-entity create-enrollment-payment-meta-data" [routerLink]="['/', { outlets: { popup: ['enrollment-payment-meta-data-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Enrollment Payment Meta Data
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="enrollment_Payment_MetaData">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Enrollment Id</span></th>
+            <th><span>Agent Id</span></th>
+            <th><span>Is Advancable</span></th>
+            <th><span>Carrier Commission Rule Id</span></th>
+            <th><span>Agent Commision Rule Id</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let enrollment_Payment_MetaData of enrollment_Payment_MetaData ;trackBy: trackId">
+                <td><a [routerLink]="['../enrollment-payment-meta-data', enrollment_Payment_MetaData.id ]">{{enrollment_Payment_MetaData.id}}</a></td>
+                <td>{{enrollment_Payment_MetaData.enrollmentId}}</td>
+                <td>{{enrollment_Payment_MetaData.agentId}}</td>
+                <td>{{enrollment_Payment_MetaData.isAdvancable}}</td>
+                <td>{{enrollment_Payment_MetaData.carrierCommissionRuleId}}</td>
+                <td>{{enrollment_Payment_MetaData.agentCommisionRuleId}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../enrollment-payment-meta-data', enrollment_Payment_MetaData.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'enrollment-payment-meta-data/'+ enrollment_Payment_MetaData.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'enrollment-payment-meta-data/'+ enrollment_Payment_MetaData.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
